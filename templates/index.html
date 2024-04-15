@@ -1,0 +1,52 @@
+{% from "bootstrap5/form.html" import render_form %}
+{% include "header.html" %}
+
+<html>
+<!--HEADER IMAGE-->
+<div class="container">
+    <div class="row">
+        <div>
+            <img class="d-block mx-auto mb-10 col-xl-10 col-sm-12 col-lg-12 col-md-12 col-12"
+                 src="{{ url_for('static', filename='assets/img/morsecode2.png') }}"
+                 alt="" width="200" height="180">
+        </div>
+    </div>
+</div>
+
+
+<div class="px-4 py-1 my-3 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Morse Code Converter</h1>
+
+    <div class="col-lg-3 mx-auto guidelines p-4">
+        <p class="lead mb-4">
+        <ul class="text-start">
+            <li>For text to Morse Code use letters from A to Z and numbers</li>
+            <li>For Morse Code to text:</li>
+            <ul>
+                <li>Use symbols "." and "-" or "_"</li>
+                <li>Use SPACE to divide letters and "/" to divide words</li>
+            </ul>
+        </ul>
+    </div>
+</div>
+<!--FORM-->
+    <span class="form d-grid gap-2 d-sm-flex justify-content-sm-center" style="text-align:center">
+        {{ render_form(form, novalidate=True) }}
+    </span>
+
+<!--(RESULT) FLASH MESSAGE-->
+    <div class="container md-6">
+        <div class="row py-5">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flash>
+                {% for message in messages %}
+                <p class="flash">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </ul>
+        </div>
+    </div>
+
+</html>
